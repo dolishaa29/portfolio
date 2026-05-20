@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { FaBars, FaXmark } from "react-icons/fa6"
 
 const Navbar = () => {
-
   const [showMenu, setShowMenu] = useState(false);
 
   return (
