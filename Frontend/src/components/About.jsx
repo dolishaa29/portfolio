@@ -1,7 +1,7 @@
 import React from 'react'
 import Hero from './Hero'
 import {motion} from 'framer-motion'
-import backdrop from '../assets/backdrop.jpg'
+import backdrop from '../assets/dolisha.jpeg'
 
 const About = () => {
   return (
