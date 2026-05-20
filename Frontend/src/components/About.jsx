@@ -33,8 +33,15 @@ const About = () => {
           whileInView={{opacity:1,y:0}}
           transition={{duration:0.9, ease:'easeOut'}}
           viewport={{once:false,amount:0.2}}
-          className='md:w-1/2 '
+          className='md:w-1/2'
           >
+            <div className='rounded-2xl p-8'>
+              <h3 className='text-2xl font-semibold mb-6'>My Journey</h3>
+              <p className='text-gray-300 mb-6'>full stack developer</p>
+              <p className='text-gray-300 mb-12'>coding</p>
+              <div className='grid grid-cols-1 md:grid-cols-2'>
+              </div>
+            </div>
 
           </motion.div>
       </div>
