@@ -1,6 +1,7 @@
 import React from 'react'
 import Hero from './Hero'
 import {motion} from 'framer-motion'
+import backdrop from '../assets/backdrop.jpg'
 
 const About = () => {
   return (
@@ -20,8 +21,22 @@ const About = () => {
         </p>
       <div className='flex flex-col md:flex-row items-center gap-12'>
           <div className='md:w-1/2 relative text-purple-600'>
-            <h1 className='text-3xl font-bold text-center mb-4'>hey dolisha</h1>
+            <motion.img initial={{opacity:0 , y:50}}
+            whileInView={{opacity:1,y:0}}
+            transition={{duration:0.9,ease:'easeOut'}}
+            viewport={{once:false,amount:0.2}}
+            className='w-full h-full object-cover'
+            src={backdrop} alt=''/>
           </div>
+          <motion.div 
+          initial={{opacity:0,y:50}}
+          whileInView={{opacity:1,y:0}}
+          transition={{duration:0.9, ease:'easeOut'}}
+          viewport={{once:false,amount:0.2}}
+          className='md:w-1/2 '
+          >
+
+          </motion.div>
       </div>
     </div>
     </motion.div>
