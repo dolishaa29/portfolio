@@ -19,8 +19,8 @@ const About = () => {
             Get to know more about my background and passion
         </p>
       <div className='flex flex-col md:flex-row items-center gap-12'>
-          <div className='md:w-1/2 '>
-            <h1 className='text-3xl font-bold text-center mb-4'>Hey</h1>
+          <div className='md:w-1/2 relative text-purple-600'>
+            <h1 className='text-3xl font-bold text-center mb-4'>hey dolisha</h1>
           </div>
       </div>
     </div>
