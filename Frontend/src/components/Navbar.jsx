@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
 import { FaBars, FaXmark } from "react-icons/fa6"
 
-const Navbar = (about) => {
+const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   
-  if(about==true)
-  {
-    alert("hi");
-  }
+
 
 
   return (
