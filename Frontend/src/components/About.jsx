@@ -5,14 +5,6 @@ import Navbar from './Navbar';
 
 const About = () => {
 
-   useEffect=()=>
-   {
-    about=true;
-    const call=async()=>
-    {
-       <Navbar about/>
-    }
-   }
 
   return (
     <motion.section
