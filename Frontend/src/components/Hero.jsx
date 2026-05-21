@@ -47,13 +47,12 @@ const Hero = () => {
           </motion.h2>
 
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="text-gray-400 text-lg leading-relaxed max-w-xl mb-8"
-          >
-            I create modern, responsive and user-friendly web experiences
-            using the latest technologies with beautiful UI/UX design.
+           initial={{ opacity: 0 }}
+           animate={{ opacity: 1 }}
+           transition={{ delay: 0.8 }}
+           className="text-gray-400 text-lg leading-relaxed max-w-xl mb-8"
+           >
+           Learn. Build. Grow — every day as a developer.
           </motion.p>
 
           <motion.div

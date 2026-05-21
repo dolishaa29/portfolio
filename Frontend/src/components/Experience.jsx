@@ -3,22 +3,22 @@ import { motion } from 'framer-motion';
 
 const workdata = [
   {
-    role: "Senior Frontend Developer",
-    company: "TechCorp Inc.",
-    year: "2020 - Present",
-    desc: "Leading frontend development for enterprise clients, implementing modern frameworks and mentoring junior developers."
-  },
-  {
     role: "Web Developer",
-    company: "Digital Solutions LLC",
-    year: "2018 - 2020",
-    desc: "Developed and maintained responsive web applications with a focus on performance optimization and user experience."
+    company: "MicroSun Infotech Ltd.",
+    year: "June 2025 - Aug 2025",
+    desc: "Worked on developing and maintaining web applications, focusing on responsive design, performance optimization, and improving user experience."
   },
   {
-    role: "UI/UX Designer",
-    company: "Creative Studio",
-    year: "2016 - 2018",
-    desc: "Designed intuitive user interfaces and collaborated with developers to build seamless digital experiences."
+    role: "Full Stack Developer",
+    company: "Flux Messenger",
+    year: "May 2026 - Present",
+    desc: "Working on both frontend and backend development, building scalable features and improving overall system performance."
+  },
+  {
+    role: "Software Engineer",
+    company: "Success Ladder Technologies",
+    year: "May 2026 - Present",
+    desc: "Developing software solutions, collaborating with teams to design, build, and maintain efficient applications."
   }
 ];
 
@@ -34,7 +34,6 @@ const Experience = () => {
     >
       <div className="container mx-auto px-6 lg:px-16">
 
-        {/* Heading */}
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Work
@@ -47,10 +46,8 @@ const Experience = () => {
           </p>
         </div>
 
-        {/* Timeline */}
         <div className="relative max-w-5xl mx-auto">
 
-          {/* Vertical Line */}
           <div className="absolute left-4 md:left-1/2 top-0 h-full w-1 bg-gradient-to-b from-purple-600 to-pink-500 transform md:-translate-x-1/2"></div>
 
           <div className="space-y-16">
@@ -69,15 +66,12 @@ const Experience = () => {
                 }`}
               >
 
-                {/* Timeline Dot */}
                 <div className="absolute left-0 md:left-1/2 w-8 h-8 bg-purple-600 rounded-full border-4 border-[#111827] transform md:-translate-x-1/2 z-10 shadow-lg shadow-purple-600/40"></div>
 
-                {/* Card */}
                 <div className="ml-14 md:ml-0 md:w-[45%]">
 
                   <div className="bg-[#1f2937] border border-gray-700 hover:border-purple-500 p-8 rounded-3xl shadow-xl hover:scale-105 transition duration-300">
 
-                    {/* Top */}
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-5">
 
                       <div>
@@ -95,7 +89,6 @@ const Experience = () => {
                       </span>
                     </div>
 
-                    {/* Description */}
                     <p className="text-gray-300 leading-relaxed">
                       {data.desc}
                     </p>

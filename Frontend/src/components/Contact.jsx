@@ -11,7 +11,6 @@ import {
   FaFacebook,
 } from 'react-icons/fa';
 
-
 const Contact = () => {
   return (
     <motion.section
@@ -24,11 +23,9 @@ const Contact = () => {
     >
       <div className="container mx-auto px-6 lg:px-16">
 
-        {/* Heading */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Get In
-            <span className="text-purple-500"> Touch</span>
+            Get In <span className="text-purple-500">Touch</span>
           </h2>
 
           <p className="text-gray-400 max-w-2xl mx-auto text-lg">
@@ -37,10 +34,8 @@ const Contact = () => {
           </p>
         </div>
 
-        {/* Main Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 max-w-6xl mx-auto">
 
-          {/* LEFT SIDE FORM */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -50,7 +45,6 @@ const Contact = () => {
           >
             <form className="space-y-6">
 
-              {/* Name */}
               <div>
                 <label className="block text-gray-300 mb-2 font-medium">
                   Your Name
@@ -63,7 +57,6 @@ const Contact = () => {
                 />
               </div>
 
-              {/* Email */}
               <div>
                 <label className="block text-gray-300 mb-2 font-medium">
                   Email Address
@@ -76,7 +69,6 @@ const Contact = () => {
                 />
               </div>
 
-              {/* Message */}
               <div>
                 <label className="block text-gray-300 mb-2 font-medium">
                   Your Message
@@ -89,17 +81,16 @@ const Contact = () => {
                 ></textarea>
               </div>
 
-              {/* Button */}
               <button
                 type="submit"
                 className="w-full bg-gradient-to-r from-purple-600 to-pink-500 hover:scale-105 transition duration-300 py-4 rounded-xl font-semibold shadow-lg shadow-purple-600/30"
               >
                 Send Message
               </button>
+
             </form>
           </motion.div>
 
-          {/* RIGHT SIDE INFO */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -108,92 +99,76 @@ const Contact = () => {
             className="flex flex-col justify-center"
           >
 
-            {/* Info Cards */}
             <div className="space-y-6">
 
-              {/* Location */}
               <div className="flex items-start gap-5 bg-[#1f2937] p-6 rounded-2xl border border-gray-700 hover:border-purple-500 transition duration-300">
                 <div className="text-purple-500 text-3xl">
                   <FaMapMarkedAlt />
                 </div>
-
                 <div>
-                  <h3 className="text-xl font-semibold mb-1">
-                    Location
-                  </h3>
-
-                  <p className="text-gray-400">
-                    Alwar, Rajasthan
-                  </p>
+                  <h3 className="text-xl font-semibold mb-1">Location</h3>
+                  <p className="text-gray-400">Alwar, Rajasthan</p>
                 </div>
               </div>
 
-              {/* Email */}
               <div className="flex items-start gap-5 bg-[#1f2937] p-6 rounded-2xl border border-gray-700 hover:border-purple-500 transition duration-300">
                 <div className="text-purple-500 text-3xl">
                   <FaEnvelope />
                 </div>
-
                 <div>
-                  <h3 className="text-xl font-semibold mb-1">
-                    Email
-                  </h3>
-
-                  <p className="text-gray-400">
-                    dolishagandhi@gmail.com
-                  </p>
+                  <h3 className="text-xl font-semibold mb-1">Email</h3>
+                  <p className="text-gray-400">dolishagandhi@gmail.com</p>
                 </div>
               </div>
 
-              {/* Phone */}
               <div className="flex items-start gap-5 bg-[#1f2937] p-6 rounded-2xl border border-gray-700 hover:border-purple-500 transition duration-300">
                 <div className="text-purple-500 text-3xl">
                   <FaPhone />
                 </div>
-
                 <div>
-                  <h3 className="text-xl font-semibold mb-1">
-                    Phone
-                  </h3>
-
-                  <p className="text-gray-400">
-                    +91 7014093257
-                  </p>
+                  <h3 className="text-xl font-semibold mb-1">Phone</h3>
+                  <p className="text-gray-400">+91 7014093257</p>
                 </div>
               </div>
+
             </div>
 
-            {/* Social Media */}
             <div className="mt-10">
-              <h3 className="text-2xl font-semibold mb-5">
-                Follow Me
-              </h3>
+              <h3 className="text-2xl font-semibold mb-5">Follow Me</h3>
 
               <div className="flex gap-4">
 
                 <a
-                  href="#"
+                  href="https://github.com/dolishaa29"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-14 h-14 rounded-full bg-[#1f2937] flex items-center justify-center text-purple-500 text-xl hover:bg-purple-600 hover:text-white transition duration-300"
                 >
                   <FaGithub />
                 </a>
 
                 <a
-                  href="#"
+                  href="https://linkedin.com/in/dolishagandhi"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-14 h-14 rounded-full bg-[#1f2937] flex items-center justify-center text-purple-500 text-xl hover:bg-purple-600 hover:text-white transition duration-300"
                 >
                   <FaLinkedin />
                 </a>
 
                 <a
-                  href="#"
+                  href="https://twitter.com/dolishagandhi"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-14 h-14 rounded-full bg-[#1f2937] flex items-center justify-center text-purple-500 text-xl hover:bg-purple-600 hover:text-white transition duration-300"
                 >
                   <FaTwitter />
                 </a>
 
                 <a
-                  href="#"
+                  href="https://www.facebook.com/share/1ECSxwDi4a/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-14 h-14 rounded-full bg-[#1f2937] flex items-center justify-center text-purple-500 text-xl hover:bg-purple-600 hover:text-white transition duration-300"
                 >
                   <FaFacebook />
@@ -203,6 +178,7 @@ const Contact = () => {
             </div>
 
           </motion.div>
+
         </div>
       </div>
     </motion.section>

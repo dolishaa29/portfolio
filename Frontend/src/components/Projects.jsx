@@ -59,8 +59,13 @@ const projects = [
   },
 ];
 
+
+
+
 const Projects = () => {
+
   return (
+
     <motion.section
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -70,23 +75,18 @@ const Projects = () => {
       className="py-24 bg-[#111827] text-white"
     >
       <div className="container mx-auto px-6 lg:px-16">
-
         <div className="text-center mb-16">
-
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             My
             <span className="text-purple-500"> Projects</span>
           </h2>
-
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             A collection of projects showcasing my skills in
             frontend development, backend integration and UI design.
           </p>
-
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
-
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -102,7 +102,7 @@ const Projects = () => {
               }}
               className="bg-[#1f2937] rounded-3xl overflow-hidden border border-gray-700 hover:border-purple-500 shadow-xl hover:shadow-purple-600/20 transition duration-300"
             >
-              {/* Image */}
+
               <div className="overflow-hidden">
                 <img
                   src={project.image}
@@ -111,7 +111,6 @@ const Projects = () => {
                 />
               </div>
 
-              {/* Content */}
               <div className="p-6">
 
                 <h3 className="text-2xl font-bold mb-3">
@@ -122,7 +121,6 @@ const Projects = () => {
                   {project.description}
                 </p>
 
-                {/* Tech Stack */}
                 <div className="flex flex-wrap gap-3 mb-6">
 
                   {project.tech.map((tech, idx) => (
@@ -136,7 +134,6 @@ const Projects = () => {
 
                 </div>
 
-                {/* Buttons FIXED */}
                 <div className="flex gap-4">
 
                   <a
