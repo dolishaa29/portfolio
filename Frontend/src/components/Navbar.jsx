@@ -11,8 +11,8 @@ const Navbar = () => {
 
         <div>
           <a href='#' className='text-3xl font-bold text-white'>
-            Dolisha
-            <span className='text-purple-500 px-2'>Gandhi</span>
+            
+            <span className='text-purple-500 px-2'></span>
           </a>
         </div>
 
