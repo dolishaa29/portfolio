@@ -1,8 +1,14 @@
 import React, { useState } from 'react'
 import { FaBars, FaXmark } from "react-icons/fa6"
 
-const Navbar = () => {
+const Navbar = (about) => {
   const [showMenu, setShowMenu] = useState(false);
+  
+  if(about==true)
+  {
+    alert("hi");
+  }
+
 
   return (
     <nav className='fixed w-full z-50 bg-dark-100/90 backdrop-blur-sm py-4 px-8 shadow-lg'>
@@ -122,6 +128,8 @@ const Navbar = () => {
           </div>
         )
       }
+
+      
 
     </nav>
   )

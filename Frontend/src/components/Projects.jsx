@@ -1,14 +1,20 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Projectcards from './Projectcards';
-import dolisha from '../assets/dolisha.jpeg';
+import portfolio from '../assets/portfolio.png'
+import erp from '../assets/erp.jfif'
+import productx from '../assets/productx.png'
+import taskflow from '../assets/taskflow.png'
+import unitribe from '../assets/unitribe.png'
+import health from '../assets/aurahealth.png'
+
 
 const projects = [
   {
     title: 'Personal Portfolio Website',
     description:
       'A modern developer portfolio built using React, Tailwind CSS and Framer Motion with smooth animations.',
-    image: dolisha,
+    image: portfolio,
     tech: ['React', 'Tailwind', 'Framer Motion'],
     github: 'https://github.com/dolishaa29/portfolio',
     live: 'https://dolishaportfolio.vercel.app/',
@@ -17,7 +23,7 @@ const projects = [
     title: 'ERP Management System',
     description:
       'A complete ERP system for managing users, inventory and business operations efficiently.',
-    image: dolisha,
+    image: erp,
     tech: ['React', 'Node.js', 'MongoDB'],
     github: 'https://github.com/dolishaa29/EDUpulse_2.0',
     live: 'https://frontend-4pr1.onrender.com/',
@@ -26,7 +32,7 @@ const projects = [
     title: 'Aura HealthCare',
     description:
       'A healthcare platform for managing patient records and appointments.',
-    image: dolisha,
+    image: health,
     tech: ['React', 'Node.js', 'MongoDB'],
     github: 'https://github.com/dolishaa29/healthcare_app',
     live: 'https://auraahealth.vercel.app/',
@@ -35,7 +41,7 @@ const projects = [
     title: 'UniTribe',
     description:
       'System for managing students, faculty, courses and attendance.',
-    image: dolisha,
+    image: unitribe,
     tech: ['React', 'Firebase', 'Tailwind'],
     github: 'https://github.com/dolishaa29/UniTribe',
     live: 'https://unitribe-nine.vercel.app/login',
@@ -43,7 +49,7 @@ const projects = [
   {
     title: 'ProductX',
     description: 'Product Selling and Redirecting App',
-    image: dolisha,
+    image: productx,
     tech: ['React', 'Node.js', 'MongoDB'],
     github: 'https://github.com/dolishaa29/Orufy_assignment',
     live: 'https://orufy-assignment-puce.vercel.app/',
@@ -52,7 +58,7 @@ const projects = [
     title: 'Task Management System',
     description:
       'A productivity app for managing daily tasks and deadlines.',
-    image: dolisha,
+    image: taskflow,
     tech: ['React', 'Local Storage', 'CSS'],
     github: 'https://github.com/dolishaa29/task_scheduler_assignment',
     live: 'https://tasskfloww.vercel.app/',
