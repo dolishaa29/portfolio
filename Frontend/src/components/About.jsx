@@ -15,8 +15,8 @@ const About = () => {
       id="about"
       className="py-24 bg-[#111827] text-white"
     >
-      <div className="container mx-auto px-6 lg:px-16">
 
+      <div className="container mx-auto px-6 lg:px-16">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             About <span className="text-purple-500">Me</span>
