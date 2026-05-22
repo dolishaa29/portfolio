@@ -1,10 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FaBars, FaXmark } from "react-icons/fa6"
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
-  
+  const [activeSection, setActiveSection] = useState("home");
 
+  useEffect(() => {
+
+    
+    const ids = ["home", "about", "skills", "projects", "experience", "contact"];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-30% 0px -60% 0px" }
+    );
+
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    
+    return () => {
+      ids.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) observer.unobserve(el);
+      });
+    }
+  }, []);
+  
 
 
   return (
@@ -21,34 +50,34 @@ const Navbar = () => {
 
         <div className='hidden md:flex space-x-10'>
 
-          <a href="#home" className='relative text-white/80 transition duration-300 hover:text-purple-500 group'>
+          <a href="#home" className={`relative transition duration-300 group ${activeSection === 'home' ? 'text-purple-500' : 'text-white/80 hover:text-purple-500'}`}>
             <span>Home</span>
-            <span className='absolute left-0 -bottom-1 w-full h-0.5 bg-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left'></span>
+            <span className={`absolute left-0 -bottom-1 h-0.5 bg-purple-500 transition-transform duration-300 origin-left ${activeSection === 'home' ? 'w-full scale-x-100' : 'w-full scale-x-0 group-hover:scale-x-100'}`}></span>
           </a>
 
-          <a href="#about" className='relative text-white/80 transition duration-300 hover:text-purple-500 group'>
+          <a href="#about" className={`relative transition duration-300 group ${activeSection === 'about' ? 'text-purple-500' : 'text-white/80 hover:text-purple-500'}`}>
             <span>About</span>
-            <span className='absolute left-0 -bottom-1 w-full h-0.5 bg-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left'></span>
+            <span className={`absolute left-0 -bottom-1 h-0.5 bg-purple-500 transition-transform duration-300 origin-left ${activeSection === 'about' ? 'w-full scale-x-100' : 'w-full scale-x-0 group-hover:scale-x-100'}`}></span>
           </a>
 
-          <a href="#skills" className='relative text-white/80 transition duration-300 hover:text-purple-500 group'>
+          <a href="#skills" className={`relative transition duration-300 group ${activeSection === 'skills' ? 'text-purple-500' : 'text-white/80 hover:text-purple-500'}`}>
             <span>Skills</span>
-            <span className='absolute left-0 -bottom-1 w-full h-0.5 bg-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left'></span>
+            <span className={`absolute left-0 -bottom-1 h-0.5 bg-purple-500 transition-transform duration-300 origin-left ${activeSection === 'skills' ? 'w-full scale-x-100' : 'w-full scale-x-0 group-hover:scale-x-100'}`}></span>
           </a>
 
-          <a href="#projects" className='relative text-white/80 transition duration-300 hover:text-purple-500 group'>
+          <a href="#projects" className={`relative transition duration-300 group ${activeSection === 'projects' ? 'text-purple-500' : 'text-white/80 hover:text-purple-500'}`}>
             <span>Projects</span>
-            <span className='absolute left-0 -bottom-1 w-full h-0.5 bg-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left'></span>
+            <span className={`absolute left-0 -bottom-1 h-0.5 bg-purple-500 transition-transform duration-300 origin-left ${activeSection === 'projects' ? 'w-full scale-x-100' : 'w-full scale-x-0 group-hover:scale-x-100'}`}></span>
           </a>
 
-          <a href="#experience" className='relative text-white/80 transition duration-300 hover:text-purple-500 group'>
+          <a href="#experience" className={`relative transition duration-300 group ${activeSection === 'experience' ? 'text-purple-500' : 'text-white/80 hover:text-purple-500'}`}>
             <span>Experience</span>
-            <span className='absolute left-0 -bottom-1 w-full h-0.5 bg-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left'></span>
+            <span className={`absolute left-0 -bottom-1 h-0.5 bg-purple-500 transition-transform duration-300 origin-left ${activeSection === 'experience' ? 'w-full scale-x-100' : 'w-full scale-x-0 group-hover:scale-x-100'}`}></span>
           </a>
 
-          <a href="#contact" className='relative text-white/80 transition duration-300 hover:text-purple-500 group'>
+          <a href="#contact" className={`relative transition duration-300 group ${activeSection === 'contact' ? 'text-purple-500' : 'text-white/80 hover:text-purple-500'}`}>
             <span>Contact</span>
-            <span className='absolute left-0 -bottom-1 w-full h-0.5 bg-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left'></span>
+            <span className={`absolute left-0 -bottom-1 h-0.5 bg-purple-500 transition-transform duration-300 origin-left ${activeSection === 'contact' ? 'w-full scale-x-100' : 'w-full scale-x-0 group-hover:scale-x-100'}`}></span>
           </a>
 
         </div>
@@ -77,7 +106,7 @@ const Navbar = () => {
             <a
               onClick={() => setShowMenu(!showMenu)}
               href="#home"
-              className='relative text-white/80 transition duration-300 hover:text-purple-500 group'
+              className={`relative transition duration-300 ${activeSection === 'home' ? 'text-purple-500 font-bold' : 'text-white/80'}`}
             >
               <span>Home</span>
             </a>
@@ -85,7 +114,7 @@ const Navbar = () => {
             <a
               onClick={() => setShowMenu(!showMenu)}
               href="#about"
-              className='relative text-white/80 transition duration-300 hover:text-purple-500 group'
+              className={`relative transition duration-300 ${activeSection === 'about' ? 'text-purple-500 font-bold' : 'text-white/80'}`}
             >
               <span>About</span>
             </a>
@@ -93,7 +122,7 @@ const Navbar = () => {
             <a
               onClick={() => setShowMenu(!showMenu)}
               href="#skills"
-              className='relative text-white/80 transition duration-300 hover:text-purple-500 group'
+              className={`relative transition duration-300 ${activeSection === 'skills' ? 'text-purple-500 font-bold' : 'text-white/80'}`}
             >
               <span>Skills</span>
             </a>
@@ -101,7 +130,7 @@ const Navbar = () => {
             <a
               onClick={() => setShowMenu(!showMenu)}
               href="#projects"
-              className='relative text-white/80 transition duration-300 hover:text-purple-500 group'
+              className={`relative transition duration-300 ${activeSection === 'projects' ? 'text-purple-500 font-bold' : 'text-white/80'}`}
             >
               <span>Projects</span>
             </a>
@@ -109,7 +138,7 @@ const Navbar = () => {
             <a
               onClick={() => setShowMenu(!showMenu)}
               href="#experience"
-              className='relative text-white/80 transition duration-300 hover:text-purple-500 group'
+              className={`relative transition duration-300 ${activeSection === 'experience' ? 'text-purple-500 font-bold' : 'text-white/80'}`}
             >
               <span>Experience</span>
             </a>
@@ -117,7 +146,7 @@ const Navbar = () => {
             <a
               onClick={() => setShowMenu(!showMenu)}
               href="#contact"
-              className='relative text-white/80 transition duration-300 hover:text-purple-500 group'
+              className={`relative transition duration-300 ${activeSection === 'contact' ? 'text-purple-500 font-bold' : 'text-white/80'}`}
             >
               <span>Contact</span>
             </a>
@@ -125,9 +154,6 @@ const Navbar = () => {
           </div>
         )
       }
-
-      
-
     </nav>
   )
 }
