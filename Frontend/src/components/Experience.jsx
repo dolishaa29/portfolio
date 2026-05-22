@@ -8,12 +8,12 @@ const workdata = [
     year: "June 2025 - Aug 2025",
     desc: "Worked on developing and maintaining web applications, focusing on responsive design, performance optimization, and improving user experience."
   },
-  {
-    role: "Full Stack Developer",
-    company: "Flux Messenger",
-    year: "May 2026 - Present",
-    desc: "Working on both frontend and backend development, building scalable features and improving overall system performance."
-  },
+  // {
+  //   role: "Full Stack Developer",
+  //   company: "Flux Messenger",
+  //   year: "May 2026 - Present",
+  //   desc: "Working on both frontend and backend development, building scalable features and improving overall system performance."
+  // },
   {
     role: "Software Engineer",
     company: "Success Ladder Technologies",
