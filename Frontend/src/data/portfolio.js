@@ -60,7 +60,7 @@ export const skillGroups = [
   { title: 'Languages', items: ['JavaScript', 'TypeScript', 'Python', 'Java', 'C', 'C++'] },
   { title: 'Frontend & UI', items: ['React', 'Next.js', 'HTML5', 'CSS3', 'Tailwind CSS', 'Material UI'] },
   { title: 'Backend', items: ['Node.js', 'Express.js', 'NestJS', 'FastAPI', 'Flask', 'REST APIs', 'Socket.IO'] },
-  { title: 'AI & LLMs', items: ['LangChain', 'RAG', 'Agents', 'Gemini API', 'OpenAI API', 'Mistral AI', 'Hugging Face'] },
+  { title: 'AI & LLMs', items: ['LangChain', 'RAG', 'Agents', 'Gemini API', 'OpenAI API', 'Grok API', 'Mistral AI', 'Hugging Face'] },
   { title: 'Databases', items: ['MongoDB', 'PostgreSQL', 'MySQL', 'Redis'] },
   { title: 'Cloud & Tools', items: ['AWS (EC2, S3)', 'Docker', 'Nginx', 'Git & GitHub', 'Postman', 'Vercel', 'Cloudinary'] },
 ];
@@ -154,11 +154,12 @@ export const projects = [
     title: 'AuraHealth',
     subtitle: 'AI-Powered Healthcare Platform',
     description:
-      'Telemedicine platform with Admin, Doctor and Patient portals, WebRTC video consultations, Socket.IO chat and a Gemini-powered assistant for symptom triage, report and skin analysis.',
+      'Telemedicine platform with Admin, Doctor and Patient portals, P2P WebRTC consultations, Socket.IO chat and an SSE-streamed Gemini chatbot with Sarvam text-to-speech for symptom triage, report and skin analysis.',
     points: [
       'JWT + RBAC + OTP resets; cut dependency vulnerabilities from 39 to 0',
-      'Dockerized on AWS EC2 behind Nginx with Redis rate limiting (20 req/min)',
-      'Async locking to prevent appointment double-booking',
+      'Redis Pub/Sub for real-time cross-server communication',
+      'Dockerized on AWS EC2 behind an Nginx load balancer with health checks and rate limiting (20 req/min)',
+      'Async mutex locking to prevent concurrent slot double-booking',
     ],
     image: healthImg,
     tech: ['React 19', 'Express 5', 'MongoDB', 'WebRTC', 'Redis', 'Docker', 'Gemini'],
@@ -172,9 +173,10 @@ export const projects = [
     description:
       '3-portal ERP (Admin / Staff / Student) across 18+ modules — fees, hostel, library, transport — with facial-recognition attendance and a bilingual Gemini AI assistant.',
     points: [
-      'TensorFlow.js face attendance with 200m geofencing',
-      'WebRTC meetings, Socket.IO chat, automated PDF reports',
-      'Docker on AWS EC2 behind Nginx with HTTPS',
+      'RBAC and REST APIs to prevent unauthorized access and data exposure',
+      'TensorFlow.js face attendance with 200m geofencing, Cloudinary media and automated PDF reports',
+      'WebRTC meetings, Socket.IO chat and a bilingual Gemini AI assistant',
+      'Docker on AWS EC2 behind Nginx with HTTPS; cross-origin cookie auth across Vercel and EC2',
     ],
     image: erpImg,
     tech: ['React', 'Node.js', 'MongoDB', 'Material UI', 'Socket.IO', 'Docker', 'AWS'],
@@ -190,7 +192,6 @@ export const projects = [
     points: [
       'LangChain tool-calling agents with Tavily search and BeautifulSoup scrapers',
       'FastAPI backend with a React dashboard visualizing each agent step',
-      'Modular writer / critic pipelines for AI-assisted article generation',
     ],
     image: null,
     tech: ['Python', 'FastAPI', 'LangChain', 'Mistral AI', 'Tavily API', 'BeautifulSoup', 'React'],

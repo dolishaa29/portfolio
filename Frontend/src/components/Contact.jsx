@@ -11,7 +11,6 @@ const Contact = () => {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
   const update = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  // No backend: compose the message in the visitor's email client.
   const handleSubmit = (e) => {
     e.preventDefault();
     const subject = form.subject || `Portfolio enquiry from ${form.name}`;
