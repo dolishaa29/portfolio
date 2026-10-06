@@ -1,187 +1,119 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { ArrowUpRight, Mail, MapPin, Phone, Send } from 'lucide-react';
+import { FaFacebookF, FaGithub, FaLinkedinIn, FaXTwitter } from 'react-icons/fa6';
+import { profile, socials } from '../data/portfolio';
+import { Reveal, Section } from './ui';
 
-import {
-  FaMapMarkedAlt,
-  FaEnvelope,
-  FaPhone,
-  FaGithub,
-  FaLinkedin,
-  FaTwitter,
-  FaFacebook,
-} from 'react-icons/fa';
+const inputClass =
+  'w-full rounded-xl border border-line bg-ink px-4 py-3 text-white placeholder:text-zinc-600 outline-none transition focus:border-violet-400 focus:ring-4 focus:ring-violet-400/10';
 
 const Contact = () => {
+  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
+  const update = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  // No backend: compose the message in the visitor's email client.
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const subject = form.subject || `Portfolio enquiry from ${form.name}`;
+    const body = `${form.message}\n\n— ${form.name} (${form.email})`;
+    window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
+  const details = [
+    { icon: Mail, label: 'Email', value: profile.email, href: `mailto:${profile.email}` },
+    { icon: Phone, label: 'Phone', value: profile.phone, href: `tel:${profile.phone.replace(/\s/g, '')}` },
+    { icon: MapPin, label: 'Location', value: profile.location },
+  ];
+
+  const socialLinks = [
+    { href: socials.github, icon: FaGithub, label: 'GitHub' },
+    { href: socials.linkedin, icon: FaLinkedinIn, label: 'LinkedIn' },
+    { href: socials.twitter, icon: FaXTwitter, label: 'X' },
+    { href: socials.facebook, icon: FaFacebookF, label: 'Facebook' },
+  ];
+
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
-      viewport={{ once: true }}
-      id="contact"
-      className="py-24 bg-[#111827] text-white"
+    <Section
+      id='contact'
+      eyebrow='Contact'
+      title="Let's build"
+      accent='something together.'
+      description='Hiring, collaborating or just want to say hi? My inbox is always open.'
+      className='border-t border-line bg-surface/40'
     >
-      <div className="container mx-auto px-6 lg:px-16">
-
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Get In <span className="text-purple-500">Touch</span>
-          </h2>
-
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            Have any project in mind or want to collaborate?
-            Feel free to contact me anytime.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 max-w-6xl mx-auto">
-
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="bg-[#1f2937] p-8 rounded-3xl shadow-2xl border border-gray-700"
-          >
-            <form className="space-y-6">
-
-              <div>
-                <label className="block text-gray-300 mb-2 font-medium">
-                  Your Name
-                </label>
-
-                <input
-                  type="text"
-                  placeholder="Enter your name"
-                  className="w-full bg-[#111827] border border-gray-700 rounded-xl px-5 py-4 outline-none text-white focus:border-purple-500 transition duration-300"
-                />
-              </div>
-
-              <div>
-                <label className="block text-gray-300 mb-2 font-medium">
-                  Email Address
-                </label>
-
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="w-full bg-[#111827] border border-gray-700 rounded-xl px-5 py-4 outline-none text-white focus:border-purple-500 transition duration-300"
-                />
-              </div>
-
-              <div>
-                <label className="block text-gray-300 mb-2 font-medium">
-                  Your Message
-                </label>
-
-                <textarea
-                  rows="5"
-                  placeholder="Write your message..."
-                  className="w-full bg-[#111827] border border-gray-700 rounded-xl px-5 py-4 outline-none text-white focus:border-purple-500 transition duration-300 resize-none"
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-gradient-to-r from-purple-600 to-pink-500 hover:scale-105 transition duration-300 py-4 rounded-xl font-semibold shadow-lg shadow-purple-600/30"
-              >
-                Send Message
-              </button>
-
-            </form>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="flex flex-col justify-center"
-          >
-
-            <div className="space-y-6">
-
-              <div className="flex items-start gap-5 bg-[#1f2937] p-6 rounded-2xl border border-gray-700 hover:border-purple-500 transition duration-300">
-                <div className="text-purple-500 text-3xl">
-                  <FaMapMarkedAlt />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-1">Location</h3>
-                  <p className="text-gray-400">Alwar, Rajasthan</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-5 bg-[#1f2937] p-6 rounded-2xl border border-gray-700 hover:border-purple-500 transition duration-300">
-                <div className="text-purple-500 text-3xl">
-                  <FaEnvelope />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-1">Email</h3>
-                  <p className="text-gray-400">dolishagandhi@gmail.com</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-5 bg-[#1f2937] p-6 rounded-2xl border border-gray-700 hover:border-purple-500 transition duration-300">
-                <div className="text-purple-500 text-3xl">
-                  <FaPhone />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-1">Phone</h3>
-                  <p className="text-gray-400">+91 7014093257</p>
-                </div>
-              </div>
-
-            </div>
-
-            <div className="mt-10">
-              <h3 className="text-2xl font-semibold mb-5">Follow Me</h3>
-
-              <div className="flex gap-4">
-
-                <a
-                  href="https://github.com/dolishaa29"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-14 h-14 rounded-full bg-[#1f2937] flex items-center justify-center text-purple-500 text-xl hover:bg-purple-600 hover:text-white transition duration-300"
+      <div className='grid gap-6 lg:grid-cols-5'>
+        <Reveal className='lg:col-span-2'>
+          <div className='flex h-full flex-col gap-4'>
+            {details.map(({ icon: Icon, label, value, href }) => {
+              const Wrapper = href ? 'a' : 'div';
+              return (
+                <Wrapper
+                  key={label}
+                  href={href}
+                  className='card group flex items-center gap-4 p-5 transition hover:border-zinc-600'
                 >
-                  <FaGithub />
-                </a>
+                  <div className='grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-line bg-white/3 text-violet-300'>
+                    <Icon size={19} />
+                  </div>
+                  <div className='min-w-0'>
+                    <p className='text-xs font-semibold uppercase tracking-wider text-subtle'>{label}</p>
+                    <p className='truncate text-white'>{value}</p>
+                  </div>
+                  {href && <ArrowUpRight size={18} className='ml-auto text-subtle transition group-hover:text-white' />}
+                </Wrapper>
+              );
+            })}
 
-                <a
-                  href="https://linkedin.com/in/dolishagandhi"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-14 h-14 rounded-full bg-[#1f2937] flex items-center justify-center text-purple-500 text-xl hover:bg-purple-600 hover:text-white transition duration-300"
-                >
-                  <FaLinkedin />
-                </a>
-
-                <a
-                  href="https://twitter.com/dolishagandhi"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-14 h-14 rounded-full bg-[#1f2937] flex items-center justify-center text-purple-500 text-xl hover:bg-purple-600 hover:text-white transition duration-300"
-                >
-                  <FaTwitter />
-                </a>
-
-                <a
-                  href="https://www.facebook.com/share/1ECSxwDi4a/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-14 h-14 rounded-full bg-[#1f2937] flex items-center justify-center text-purple-500 text-xl hover:bg-purple-600 hover:text-white transition duration-300"
-                >
-                  <FaFacebook />
-                </a>
-
+            <div className='card mt-auto p-5'>
+              <p className='text-xs font-semibold uppercase tracking-wider text-subtle'>Elsewhere</p>
+              <div className='mt-4 flex gap-2'>
+                {socialLinks.map(({ href, icon: Icon, label }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    aria-label={label}
+                    className='grid h-11 w-11 place-items-center rounded-xl border border-line text-zinc-300 transition hover:border-violet-400 hover:bg-violet-400/10 hover:text-white'
+                  >
+                    <Icon size={17} />
+                  </a>
+                ))}
               </div>
             </div>
+          </div>
+        </Reveal>
 
-          </motion.div>
-
-        </div>
+        <Reveal delay={0.1} className='lg:col-span-3'>
+          <form onSubmit={handleSubmit} className='card space-y-5 p-6 md:p-8'>
+            <div className='grid gap-5 sm:grid-cols-2'>
+              <label className='block'>
+                <span className='mb-2 block text-sm text-zinc-300'>Name</span>
+                <input required name='name' value={form.name} onChange={update} placeholder='Your name' className={inputClass} />
+              </label>
+              <label className='block'>
+                <span className='mb-2 block text-sm text-zinc-300'>Email</span>
+                <input required type='email' name='email' value={form.email} onChange={update} placeholder='you@company.com' className={inputClass} />
+              </label>
+            </div>
+            <label className='block'>
+              <span className='mb-2 block text-sm text-zinc-300'>Subject</span>
+              <input name='subject' value={form.subject} onChange={update} placeholder='Job opportunity, project, collaboration…' className={inputClass} />
+            </label>
+            <label className='block'>
+              <span className='mb-2 block text-sm text-zinc-300'>Message</span>
+              <textarea required rows={6} name='message' value={form.message} onChange={update} placeholder='Tell me a bit about it…' className={`${inputClass} resize-none`} />
+            </label>
+            <button
+              type='submit'
+              className='group inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 font-medium text-ink transition hover:bg-zinc-200 sm:w-auto'
+            >
+              Send message <Send size={16} className='transition group-hover:translate-x-0.5' />
+            </button>
+          </form>
+        </Reveal>
       </div>
-    </motion.section>
+    </Section>
   );
 };
 

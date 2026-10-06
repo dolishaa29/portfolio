@@ -1,26 +1,29 @@
-import React from 'react'
-import Hero from '../components/Hero'
-import About from '../components/About'
-import Navbar from '../components/Navbar'
-import Skills from '../components/Skills'
-import Projects from '../components/Projects'
-import Experience from '../components/Experience'
-import Contact from '../components/Contact'
-import Footer from '../components/Footer'
+import Navbar from '../components/Navbar';
+import Hero from '../components/Hero';
+import About from '../components/About';
+import Skills from '../components/Skills';
+import Experience from '../components/Experience';
+import Projects from '../components/Projects';
+import Education from '../components/Education';
+import Resume from '../components/Resume';
+import Contact from '../components/Contact';
+import Footer from '../components/Footer';
 
-const Home = () => {
-  return (
-    <div>
-      <Navbar />
-      <Hero/>
-      <About/>
-      <Skills/>
-      <Projects/>
-      <Experience/>
-      <Contact/>
-      <Footer/>
-    </div>
-  )
-}
+const Home = () => (
+  <div className='overflow-x-clip'>
+    <Navbar />
+    <main>
+      <Hero />
+      <About />
+      <Skills />
+      <Experience />
+      <Projects />
+      <Education />
+      <Resume />
+      <Contact />
+    </main>
+    <Footer />
+  </div>
+);
 
-export default Home
+export default Home;

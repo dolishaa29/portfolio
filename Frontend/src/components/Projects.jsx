@@ -1,175 +1,91 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import Projectcards from './Projectcards';
-import portfolio from '../assets/portfolio.png'
-import erp from '../assets/erp.jfif'
-import productx from '../assets/productx.png'
-import taskflow from '../assets/taskflow.png'
-import unitribe from '../assets/unitribe.png'
-import health from '../assets/aurahealth.png'
+import { ArrowUpRight } from 'lucide-react';
+import { FaGithub } from 'react-icons/fa6';
+import { projects } from '../data/portfolio';
+import { Reveal, Section, Tag } from './ui';
 
+const Cover = ({ project }) =>
+  project.image ? (
+    <img
+      src={project.image}
+      alt={`${project.title} screenshot`}
+      loading='lazy'
+      className='h-64 w-full object-cover object-top transition duration-700 group-hover:scale-[1.03] lg:h-full'
+    />
+  ) : (
+    <div className='relative grid h-64 w-full place-items-center overflow-hidden bg-surface-2 lg:h-full'>
+      <div className='absolute inset-0 bg-grid opacity-60' />
+      <div className='absolute h-32 w-32 rounded-full bg-violet-500/30 blur-3xl' />
+      <span className='relative text-sm text-zinc-400'>planner → search → reader</span>
+    </div>
+  );
 
-const projects = [
-  {
-    title: 'Personal Portfolio Website',
-    description:
-      'A modern developer portfolio built using React, Tailwind CSS and Framer Motion with smooth animations.',
-    image: portfolio,
-    tech: ['React', 'Tailwind', 'Framer Motion'],
-    github: 'https://github.com/dolishaa29/portfolio',
-    live: 'https://dolishaportfolio.vercel.app/',
-  },
-  {
-    title: 'ERP Management System',
-    description:
-      'A complete ERP system for managing users, inventory and business operations efficiently.',
-    image: erp,
-    tech: ['React', 'Node.js', 'MongoDB'],
-    github: 'https://github.com/dolishaa29/EDUpulse_2.0',
-    live: 'https://frontend-4pr1.onrender.com/',
-  },
-  {
-    title: 'Aura HealthCare',
-    description:
-      'A healthcare platform for managing patient records and appointments.',
-    image: health,
-    tech: ['React', 'Node.js', 'MongoDB'],
-    github: 'https://github.com/dolishaa29/healthcare_app',
-    live: 'https://auraahealth.vercel.app/',
-  },
-  {
-    title: 'UniTribe',
-    description:
-      'System for managing students, faculty, courses and attendance.',
-    image: unitribe,
-    tech: ['React', 'Firebase', 'Tailwind'],
-    github: 'https://github.com/dolishaa29/UniTribe',
-    live: 'https://unitribe-nine.vercel.app/login',
-  },
-  {
-    title: 'ProductX',
-    description: 'Product Selling and Redirecting App',
-    image: productx,
-    tech: ['React', 'Node.js', 'MongoDB'],
-    github: 'https://github.com/dolishaa29/Orufy_assignment',
-    live: 'https://orufy-assignment-puce.vercel.app/',
-  },
-  {
-    title: 'Task Management System',
-    description:
-      'A productivity app for managing daily tasks and deadlines.',
-    image: taskflow,
-    tech: ['React', 'Local Storage', 'CSS'],
-    github: 'https://github.com/dolishaa29/task_scheduler_assignment',
-    live: 'https://tasskfloww.vercel.app/',
-  },
-];
-
-
-
+const Links = ({ project }) => (
+  <div className='flex gap-2'>
+    {project.live && (
+      <a
+        href={project.live}
+        target='_blank'
+        rel='noopener noreferrer'
+        className='inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-medium text-ink transition hover:bg-zinc-200'
+      >
+        Live <ArrowUpRight size={15} />
+      </a>
+    )}
+    <a
+      href={project.github}
+      target='_blank'
+      rel='noopener noreferrer'
+      className='inline-flex items-center gap-1.5 rounded-full border border-line px-4 py-2 text-sm text-white transition hover:border-zinc-500'
+    >
+      <FaGithub size={14} /> Code
+    </a>
+  </div>
+);
 
 const Projects = () => {
-
   return (
-
-    <motion.section
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
-      viewport={{ once: true }}
-      id="projects"
-      className="py-24 bg-[#111827] text-white"
+    <Section
+      id='projects'
+      eyebrow='Selected work'
+      title='Things I have'
+      accent='built.'
+      description='Production-style platforms and AI systems — from telemedicine and campus ERP to autonomous research agents.'
+      className='border-y border-line bg-surface/40'
     >
-      <div className="container mx-auto px-6 lg:px-16">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            My
-            <span className="text-purple-500"> Projects</span>
-          </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            A collection of projects showcasing my skills in
-            frontend development, backend integration and UI design.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.1,
-              }}
-              viewport={{ once: true }}
-              whileHover={{
-                y: -10,
-              }}
-              className="bg-[#1f2937] rounded-3xl overflow-hidden border border-gray-700 hover:border-purple-500 shadow-xl hover:shadow-purple-600/20 transition duration-300"
-            >
-
-              <div className="overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-60 object-cover hover:scale-110 transition duration-500"
-                />
+      <div className='space-y-6'>
+        {projects.map((p, i) => (
+          <Reveal key={p.title} delay={0.05 * i}>
+            <article className='card group grid overflow-hidden lg:grid-cols-2'>
+              <div className={`overflow-hidden border-line ${i % 2 ? 'lg:order-2 lg:border-l' : 'lg:border-r'} border-b lg:border-b-0`}>
+                <Cover project={p} />
               </div>
-
-              <div className="p-6">
-
-                <h3 className="text-2xl font-bold mb-3">
-                  {project.title}
-                </h3>
-
-                <p className="text-gray-400 leading-relaxed mb-5">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-3 mb-6">
-
-                  {project.tech.map((tech, idx) => (
-                    <span
-                      key={idx}
-                      className="bg-purple-600/20 text-purple-400 px-4 py-2 rounded-full text-sm font-medium"
-                    >
-                      {tech}
-                    </span>
+              <div className='flex flex-col p-7 md:p-9'>
+                <p className='text-xs font-semibold uppercase tracking-wider text-violet-300'>{p.subtitle}</p>
+                <h3 className='mt-3 text-3xl font-semibold tracking-tight text-white'>{p.title}</h3>
+                <p className='mt-4 leading-relaxed text-muted'>{p.description}</p>
+                <ul className='mt-5 space-y-2'>
+                  {p.points.map((pt) => (
+                    <li key={pt} className='flex gap-3 text-sm leading-relaxed text-zinc-300'>
+                      <span className='mt-2 h-1 w-1 shrink-0 rounded-full bg-fuchsia-300' />
+                      {pt}
+                    </li>
                   ))}
-
+                </ul>
+                <div className='mt-6 flex flex-wrap gap-2'>
+                  {p.tech.map((t) => (
+                    <Tag key={t}>{t}</Tag>
+                  ))}
                 </div>
-
-                <div className="flex gap-4">
-
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 py-3 text-center rounded-xl bg-purple-600 hover:bg-purple-700 transition duration-300 font-medium"
-                  >
-                    Live Demo
-                  </a>
-
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 py-3 text-center rounded-xl border border-purple-500 hover:bg-purple-500/20 transition duration-300 font-medium"
-                  >
-                    Github
-                  </a>
-
+                <div className='mt-auto pt-8'>
+                  <Links project={p} />
                 </div>
-
               </div>
-            </motion.div>
-          ))}
-
-        </div>
-
+            </article>
+          </Reveal>
+        ))}
       </div>
-    </motion.section>
+
+    </Section>
   );
 };
 

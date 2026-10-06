@@ -1,161 +1,118 @@
-import React, { useState, useEffect } from 'react'
-import { FaBars, FaXmark } from "react-icons/fa6"
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Download, Menu, X } from 'lucide-react';
+import { navLinks, profile } from '../data/portfolio';
 
 const Navbar = () => {
-  const [showMenu, setShowMenu] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState('home');
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
 
-    
-    const ids = ["home", "about", "skills", "projects", "experience", "contact"];
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: "-30% 0px -60% 0px" }
+      (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
+      { rootMargin: '-40% 0px -55% 0px' }
     );
-
-    ids.forEach((id) => {
+    ['home', ...navLinks.map((l) => l.id)].forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
 
-    
     return () => {
-      ids.forEach((id) => {
-        const el = document.getElementById(id);
-        if (el) observer.unobserve(el);
-      });
-    }
+      window.removeEventListener('scroll', onScroll);
+      observer.disconnect();
+    };
   }, []);
-  
-
 
   return (
-    <nav className='fixed w-full z-50 bg-dark-100/90 backdrop-blur-sm py-4 px-8 shadow-lg'>
+    <header className='fixed inset-x-0 top-0 z-50 px-4 pt-4'>
+      <nav
+        className={`mx-auto flex max-w-6xl items-center justify-between rounded-2xl border px-4 py-3 transition-all duration-300 sm:px-5 ${
+          scrolled || open ? 'border-line bg-ink/75 shadow-2xl shadow-black/40 backdrop-blur-xl' : 'border-transparent'
+        }`}
+      >
+        <a href='#home' className='flex items-center gap-2.5 font-semibold tracking-tight text-white'>
+          <span className='grid h-8 w-8 place-items-center rounded-lg bg-linear-to-br from-violet-400 to-fuchsia-400 text-sm font-bold text-ink'>
+            DG
+          </span>
+          <span className='hidden sm:inline'>{profile.name}</span>
+        </a>
 
-      <div className='container mx-auto flex justify-between items-center'>
-
-        <div>
-          <a href='#' className='text-3xl font-bold text-white'>
-            
-            <span className='text-purple-500 px-2'></span>
-          </a>
+        <div className='hidden items-center gap-1 rounded-full border border-line bg-white/3 p-1 md:flex'>
+          {navLinks.map((link) => (
+            <a
+              key={link.id}
+              href={`#${link.id}`}
+              className={`relative rounded-full px-4 py-1.5 text-sm transition-colors ${
+                active === link.id ? 'text-white' : 'text-muted hover:text-white'
+              }`}
+            >
+              {active === link.id && (
+                <motion.span
+                  layoutId='nav-pill'
+                  className='absolute inset-0 rounded-full bg-white/10'
+                  transition={{ type: 'spring', bounce: 0.2, duration: 0.5 }}
+                />
+              )}
+              <span className='relative'>{link.label}</span>
+            </a>
+          ))}
         </div>
 
-        <div className='hidden md:flex space-x-10'>
-
-          <a href="#home" className={`relative transition duration-300 group ${activeSection === 'home' ? 'text-purple-500' : 'text-white/80 hover:text-purple-500'}`}>
-            <span>Home</span>
-            <span className={`absolute left-0 -bottom-1 h-0.5 bg-purple-500 transition-transform duration-300 origin-left ${activeSection === 'home' ? 'w-full scale-x-100' : 'w-full scale-x-0 group-hover:scale-x-100'}`}></span>
+        <div className='flex items-center gap-2'>
+          <a
+            href={profile.resumePdf}
+            download
+            className='hidden items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-ink transition hover:bg-zinc-200 sm:flex'
+          >
+            <Download size={15} /> Resume
           </a>
-
-          <a href="#about" className={`relative transition duration-300 group ${activeSection === 'about' ? 'text-purple-500' : 'text-white/80 hover:text-purple-500'}`}>
-            <span>About</span>
-            <span className={`absolute left-0 -bottom-1 h-0.5 bg-purple-500 transition-transform duration-300 origin-left ${activeSection === 'about' ? 'w-full scale-x-100' : 'w-full scale-x-0 group-hover:scale-x-100'}`}></span>
-          </a>
-
-          <a href="#skills" className={`relative transition duration-300 group ${activeSection === 'skills' ? 'text-purple-500' : 'text-white/80 hover:text-purple-500'}`}>
-            <span>Skills</span>
-            <span className={`absolute left-0 -bottom-1 h-0.5 bg-purple-500 transition-transform duration-300 origin-left ${activeSection === 'skills' ? 'w-full scale-x-100' : 'w-full scale-x-0 group-hover:scale-x-100'}`}></span>
-          </a>
-
-          <a href="#projects" className={`relative transition duration-300 group ${activeSection === 'projects' ? 'text-purple-500' : 'text-white/80 hover:text-purple-500'}`}>
-            <span>Projects</span>
-            <span className={`absolute left-0 -bottom-1 h-0.5 bg-purple-500 transition-transform duration-300 origin-left ${activeSection === 'projects' ? 'w-full scale-x-100' : 'w-full scale-x-0 group-hover:scale-x-100'}`}></span>
-          </a>
-
-          <a href="#experience" className={`relative transition duration-300 group ${activeSection === 'experience' ? 'text-purple-500' : 'text-white/80 hover:text-purple-500'}`}>
-            <span>Experience</span>
-            <span className={`absolute left-0 -bottom-1 h-0.5 bg-purple-500 transition-transform duration-300 origin-left ${activeSection === 'experience' ? 'w-full scale-x-100' : 'w-full scale-x-0 group-hover:scale-x-100'}`}></span>
-          </a>
-
-          <a href="#contact" className={`relative transition duration-300 group ${activeSection === 'contact' ? 'text-purple-500' : 'text-white/80 hover:text-purple-500'}`}>
-            <span>Contact</span>
-            <span className={`absolute left-0 -bottom-1 h-0.5 bg-purple-500 transition-transform duration-300 origin-left ${activeSection === 'contact' ? 'w-full scale-x-100' : 'w-full scale-x-0 group-hover:scale-x-100'}`}></span>
-          </a>
-
+          <button
+            onClick={() => setOpen(!open)}
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            className='grid h-10 w-10 place-items-center rounded-xl border border-line text-white md:hidden'
+          >
+            {open ? <X size={18} /> : <Menu size={18} />}
+          </button>
         </div>
+      </nav>
 
-        <div className='md:hidden'>
-          {
-            showMenu ?
-              <FaXmark
-                className='text-2xl text-white cursor-pointer'
-                onClick={() => setShowMenu(false)}
-              />
-              :
-              <FaBars
-                className='text-2xl text-white cursor-pointer'
-                onClick={() => setShowMenu(true)}
-              />
-          }
-        </div>
-
-      </div>
-
-      {
-        showMenu && (
-          <div className='md:hidden mt-4 bg-dark-300 h-screen rounded-lg p-4 flex flex-col space-y-4 items-center justify-center'>
-
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className='mx-auto mt-2 max-w-6xl rounded-2xl border border-line bg-surface/95 p-3 backdrop-blur-xl md:hidden'
+          >
+            {navLinks.map((link) => (
+              <a
+                key={link.id}
+                href={`#${link.id}`}
+                onClick={() => setOpen(false)}
+                className={`block rounded-xl px-4 py-3 text-base ${
+                  active === link.id ? 'bg-white/10 text-white' : 'text-muted'
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
             <a
-              onClick={() => setShowMenu(!showMenu)}
-              href="#home"
-              className={`relative transition duration-300 ${activeSection === 'home' ? 'text-purple-500 font-bold' : 'text-white/80'}`}
+              href={profile.resumePdf}
+              download
+              className='mt-2 flex items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 font-medium text-ink'
             >
-              <span>Home</span>
+              <Download size={16} /> Download Resume
             </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
+  );
+};
 
-            <a
-              onClick={() => setShowMenu(!showMenu)}
-              href="#about"
-              className={`relative transition duration-300 ${activeSection === 'about' ? 'text-purple-500 font-bold' : 'text-white/80'}`}
-            >
-              <span>About</span>
-            </a>
-
-            <a
-              onClick={() => setShowMenu(!showMenu)}
-              href="#skills"
-              className={`relative transition duration-300 ${activeSection === 'skills' ? 'text-purple-500 font-bold' : 'text-white/80'}`}
-            >
-              <span>Skills</span>
-            </a>
-
-            <a
-              onClick={() => setShowMenu(!showMenu)}
-              href="#projects"
-              className={`relative transition duration-300 ${activeSection === 'projects' ? 'text-purple-500 font-bold' : 'text-white/80'}`}
-            >
-              <span>Projects</span>
-            </a>
-
-            <a
-              onClick={() => setShowMenu(!showMenu)}
-              href="#experience"
-              className={`relative transition duration-300 ${activeSection === 'experience' ? 'text-purple-500 font-bold' : 'text-white/80'}`}
-            >
-              <span>Experience</span>
-            </a>
-
-            <a
-              onClick={() => setShowMenu(!showMenu)}
-              href="#contact"
-              className={`relative transition duration-300 ${activeSection === 'contact' ? 'text-purple-500 font-bold' : 'text-white/80'}`}
-            >
-              <span>Contact</span>
-            </a>
-
-          </div>
-        )
-      }
-    </nav>
-  )
-}
-
-export default Navbar
+export default Navbar;

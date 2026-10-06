@@ -1,77 +1,68 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useEffect } from 'react';
-import Navbar from './Navbar';
+import { Bot, Cloud, Code2, Radio, Sparkles } from 'lucide-react';
+import { about, services } from '../data/portfolio';
+import { Reveal, Section } from './ui';
 
-const About = () => {
+const icons = [Code2, Bot, Radio, Cloud];
 
-
-  return (
-    <motion.section
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: 'easeOut' }}
-      viewport={{ once: true }}
-      id="about"
-      className="py-24 bg-[#111827] text-white"
-    >
-
-      <div className="container mx-auto px-6 lg:px-16">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            About <span className="text-purple-500">Me</span>
-          </h2>
-
-          <p className="text-gray-400 text-lg max-w-3xl mx-auto">
-            React • Node.js • Python | AWS | GSSoC’26 Contributor
-          </p>
+const About = () => (
+  <Section id='about' eyebrow='About me' title='Engineer by craft,' accent='curious by default.'>
+    <div className='grid gap-4 md:grid-cols-6'>
+      <Reveal className='md:col-span-4'>
+        <div className='card h-full p-7 md:p-9'>
+          <p className='text-xl leading-relaxed text-zinc-200 md:text-2xl md:leading-relaxed'>{about.summary}</p>
+          <div className='mt-8 flex flex-wrap gap-2'>
+            {about.interests.map((i) => (
+              <span key={i} className='rounded-full bg-violet-400/10 px-3 py-1 text-sm text-violet-200'>
+                {i}
+              </span>
+            ))}
+          </div>
         </div>
+      </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-
-          <div className="bg-[#1f2937] border border-gray-700 hover:border-purple-500 transition rounded-2xl p-6">
-            <h3 className="text-purple-400 text-xl font-semibold mb-3">
-              Introduction
-            </h3>
-            <p className="text-gray-300 leading-relaxed">
-              Hi connections, I’m a final-year student passionate about Full Stack Development
-              and building scalable web applications.
-            </p>
-          </div>
-
-          <div className="bg-[#1f2937] border border-gray-700 hover:border-purple-500 transition rounded-2xl p-6">
-            <h3 className="text-purple-400 text-xl font-semibold mb-3">
-              Tech Stack
-            </h3>
-            <p className="text-gray-300 leading-relaxed">
-              React, Node.js, Express.js, Flask with focus on clean architecture,
-              performance optimization and responsive UI.
-            </p>
-          </div>
-
-          <div className="bg-[#1f2937] border border-gray-700 hover:border-purple-500 transition rounded-2xl p-6">
-            <h3 className="text-purple-400 text-xl font-semibold mb-3">
-              Experience
-            </h3>
-            <p className="text-gray-300 leading-relaxed">
-              JWT Authentication, RBAC, AI tools, AWS EC2 & S3 for deployment and cloud management.
-            </p>
-          </div>
-
-          <div className="bg-[#1f2937] border border-gray-700 hover:border-purple-500 transition rounded-2xl p-6">
-            <h3 className="text-purple-400 text-xl font-semibold mb-3">
-              Goal
-            </h3>
-            <p className="text-gray-300 leading-relaxed">
-              Building scalable, real-world solutions while continuously improving my development skills.
-            </p>
-          </div>
-
+      <Reveal delay={0.1} className='md:col-span-2'>
+        <div className='card relative h-full overflow-hidden p-7'>
+          <div className='absolute -right-10 -bottom-10 h-40 w-40 rounded-full bg-fuchsia-500/20 blur-3xl' />
+          <Sparkles className='text-fuchsia-300' size={22} />
+          <p className='mt-6 text-xs font-semibold uppercase tracking-wider text-subtle'>Currently</p>
+          <p className='mt-2 text-lg font-medium text-white'>Software Developer Intern</p>
+          <p className='text-muted'>Sipify · Marketing & Ads platform</p>
+          <p className='mt-6 text-xs font-semibold uppercase tracking-wider text-subtle'>Studying</p>
+          <p className='mt-2 text-white'>B.Tech in Computer Science</p>
         </div>
+      </Reveal>
 
-      </div>
-    </motion.section>
-  );
-};
+      {about.highlights.map((h, i) => {
+        const Icon = icons[i];
+        return (
+          <Reveal key={h.title} delay={0.05 * i} className='md:col-span-3 lg:col-span-3'>
+            <div className='card group h-full p-7 transition hover:border-zinc-600'>
+              <div className='grid h-11 w-11 place-items-center rounded-xl border border-line bg-white/3 text-violet-300 transition group-hover:text-white'>
+                <Icon size={20} />
+              </div>
+              <h3 className='mt-5 text-lg font-medium text-white'>{h.title}</h3>
+              <p className='mt-2 leading-relaxed text-muted'>{h.text}</p>
+            </div>
+          </Reveal>
+        );
+      })}
+    </div>
+
+    <Reveal className='mt-20'>
+      <p className='mb-6 text-xs font-semibold uppercase tracking-[0.15em] text-subtle'>What I can do for you</p>
+    </Reveal>
+    <div className='grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4'>
+      {services.map((s, i) => (
+        <Reveal key={s.title} delay={0.05 * i} className='bg-ink'>
+          <div className='h-full p-7'>
+            <span className='text-sm text-violet-300'>0{i + 1}</span>
+            <h3 className='mt-4 text-lg font-medium text-white'>{s.title}</h3>
+            <p className='mt-2 text-sm leading-relaxed text-muted'>{s.text}</p>
+          </div>
+        </Reveal>
+      ))}
+    </div>
+  </Section>
+);
 
 export default About;
