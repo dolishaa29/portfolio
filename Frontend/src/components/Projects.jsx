@@ -9,7 +9,7 @@ const Cover = ({ project }) =>
       src={project.image}
       alt={`${project.title} screenshot`}
       loading='lazy'
-      className='h-64 w-full object-cover object-top transition duration-700 group-hover:scale-[1.03] lg:h-full'
+      className='h-64 w-full object-cover object-center transition duration-700 group-hover:scale-[1.03] lg:h-full'
     />
   ) : (
     <div className='relative grid h-64 w-full place-items-center overflow-hidden bg-surface-2 lg:h-full'>
