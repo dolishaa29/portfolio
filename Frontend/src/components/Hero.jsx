@@ -50,7 +50,7 @@ const Hero = () => (
         <motion.h1 {...fade(0.1)} className='text-[2.6rem] font-semibold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-[3.75rem] xl:text-[4rem]'>
           Hi, I&apos;m Dolisha —
           <br />
-          <span className='text-gradient'>a Full Stack Developer.</span>
+          <span className='text-gradient'>a Full Stack &amp; AI Developer.</span>
         </motion.h1>
 
         <motion.p {...fade(0.2)} className='mt-7 max-w-xl text-lg leading-relaxed text-muted'>

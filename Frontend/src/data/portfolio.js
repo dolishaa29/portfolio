@@ -5,7 +5,7 @@ import healthImg from '../assets/aurahealth.webp';
 
 export const profile = {
   name: 'Dolisha Gandhi',
-  role: 'Full Stack Developer',
+  role: 'Full Stack & AI Developer',
   tagline: 'Learn. Build. Grow — every day as a developer.',
   intro:
     'I build production-grade web platforms end to end — from React and Next.js interfaces to NestJS, Node.js and FastAPI backends, LLM-powered agents, and Dockerized deployments on AWS.',
@@ -34,7 +34,7 @@ export const stats = [
 
 export const about = {
   summary:
-    "I'm a Full Stack Developer, B.Tech Computer Science student and Software Developer Intern at Sipify, where I work on a live marketing campaign & ads platform. I love building systems that are secure, scalable and genuinely useful — from telemedicine platforms with WebRTC video to multi-agent AI research pipelines.",
+    "I'm a Full Stack & AI Developer, B.Tech Computer Science student and Software Developer Intern at Sipify, where I work on a live marketing campaign & ads platform. I love building systems that are secure, scalable and genuinely useful — from telemedicine platforms with WebRTC video to multi-agent AI research pipelines.",
   highlights: [
     {
       title: 'Full Stack',
